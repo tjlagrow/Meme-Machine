@@ -1,0 +1,45 @@
+Team Name: char broiled;
+Team leader name: Theodore LaGrow	
+Team Members: Matthew Jagielski, Jacob Bieker, Ian Garrett
+
+Project Title: Meme-Machine
+Implementation Approach: Building a chat client and an image cipher.  
+interface
+add meme text
+filters feature
+Chat line part
+
+Risk Management:  If we cannot finish some of parts, we will cut if off.  Or even if we have more time, we will add features.  
+
+
+------
+
+
+(Meet 2/8/2016 Matt, Jacob, TJ)
+Qt
+made git hub
+looked up gimp api 
+Made paper design for the gui 
+Matthew started thinking about some of the encryption (mostly more random than we did in the last project)
+
+Goals: Jacob - get basic window up (text input at least up)
+Matthew - something that modifies picture, work on a manipulation of some kind of pixel
+TJ - Server work on ix, problem solve
+Ian - work on the filter for pgn, and jpeg
+
+png, jpeg, gzip, 
+
+watch for quality reduction
+
+
+-------
+
+
+(Meeting of 2/15/2016 ian, TJ, Jacob, Matthew)
+
+jacob has a working outline of a gui 
+Ian said he will get a picture manipulating 
+
+TJ will have a simple server and client code working.  With keys that will be associated with each chat instance.  Potentially use PThreading. Using an rand 1- max rand
+
+Matthew  find a way to encrypt the images and the text.
