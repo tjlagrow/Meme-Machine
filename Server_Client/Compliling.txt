@@ -1,0 +1,5 @@
+Compliling 
+
+Server: g++ -o server Server.cpp -lpthread
+
+Client: g++ -o client Client.cpp
