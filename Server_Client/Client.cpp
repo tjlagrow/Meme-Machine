@@ -1,5 +1,5 @@
 /*
-Cliendt.cpp
+Client.cpp
 CIS 330 Project
 Author: Theodore LaGrow
 Group Members: Ian Garret, Jacob Bieker, Matthew Jagielski
