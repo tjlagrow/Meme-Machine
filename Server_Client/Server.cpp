@@ -55,7 +55,7 @@ int main()
  
     */
 
-        
+
     int client, server;
     int portNum = 1101; 
     bool isExit = false;
