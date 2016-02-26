@@ -43,3 +43,18 @@ Ian said he will get a picture manipulating
 TJ will have a simple server and client code working.  With keys that will be associated with each chat instance.  Potentially use PThreading. Using an rand 1- max rand
 
 Matthew  find a way to encrypt the images and the text.
+
+--------
+
+(Meet 2/25/2016 matt, ian, jacob, tj)
+Made a drawing of our client server chat
+Talked about how to link up the gui
+single instant server client is working for tj
+->needs to have a chat instance for 2 chats
+->have keys for the encryption
+The client needs to be more modular 
+
+The picture manipulation can’t use magik++
+->trying to use gd or cing.
+
+Try to get the drag and drop to display a picture on the gui (found an example)
