@@ -54,6 +54,8 @@ int main()
  
  
     */
+
+        
     int client, server;
     int portNum = 1101; 
     bool isExit = false;
@@ -63,8 +65,8 @@ int main()
     struct sockaddr_in server_addr;
     socklen_t size;
  
-    /* ---------- ESTABLISHING SOCKET CONNECTION ----------*/
-    /* --------------- socket() function ------------------*/
+    // ESTABLISHING SOCKET CONNECTION
+    // socket() function
  
     client = socket(AF_INET, SOCK_STREAM, 0);
  
@@ -110,8 +112,8 @@ int main()
     server_addr.sin_addr.s_addr = htons(INADDR_ANY);
     server_addr.sin_port = htons(portNum);
  
-    /* ---------- BINDING THE SOCKET ---------- */
-    /* ---------------- bind() ---------------- */
+    // BINDING THE SOCKET
+    // bind()
  
  
     if ((bind(client, (struct sockaddr*)&server_addr,sizeof(server_addr))) < 0)
@@ -132,8 +134,8 @@ int main()
     size = sizeof(server_addr);
     cout << "=> Looking for clients..." << endl;
  
-    /* ------------- LISTENING CALL ------------- */
-    /* ---------------- listen() ---------------- */
+    // LISTENING CALL
+    // listen()
  
     listen(client, 1);
  
@@ -153,8 +155,8 @@ int main()
  
     */
  
-    /* ------------- ACCEPTING CLIENTS  ------------- */
-    /* ----------------- listen() ------------------- */
+    // ACCEPTING CLIENTS
+    // listen()
  
     /*
         The accept() system call causes the process to block
@@ -236,8 +238,8 @@ int main()
             read by the client.
         */
  
-        /* ---------------- CLOSE CALL ------------- */
-        /* ----------------- close() --------------- */
+        // CLOSE CALL
+        // close()
  
         /*
             Once the server presses # to end the connection,
