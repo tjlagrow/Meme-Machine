@@ -55,25 +55,3 @@ void flipvert(gdImagePtr img){
         }
     }
 }
-
-
-int main(){
-    gdImagePtr im;
-    std::FILE *in, *out;
-    
-    in = fopen("rs2ktotal.png","rb");
-    
-    im = gdImageCreateFromPng(in);
-    
-    printf("%d %d \n",gdImageSX(im),gdImageSY(im));
-
-    flipvert(im);
-    
-    out = fopen("newrs.png","wb");
-    
-    gdImagePng(im, out);
-    
-    fclose(in); fclose(out);
-    
-    gdImageDestroy(im);
-}

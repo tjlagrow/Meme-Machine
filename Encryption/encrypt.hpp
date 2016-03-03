@@ -18,10 +18,10 @@ public:
     ~MessageEncryption();
     
     
-    gdImagePtr encrypt(gdImagePtr &img);
+    gdImagePtr encrypt(gdImagePtr img);
     std::string encrypt(std::string &str);
     
-    gdImagePtr decrypt(gdImagePtr &img);
+    gdImagePtr decrypt(gdImagePtr img);
     std::string decrypt(std::string &str);
 
 private:
