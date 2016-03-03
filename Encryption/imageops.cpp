@@ -27,6 +27,36 @@ void shiftcol(gdImagePtr img, int col, int shamt){
     }
 }
 
+void fliphoriz(gdImagePtr img){
+    int width = gdImageSX(img);
+    int height = gdImageSY(img);
+    int tempcolor;
+
+    for(int i = 0; i<height; i++){
+        for(int j = 0;j<width/2;j++){
+            tempcolor = gdImageGetPixel(img, j,i);
+            gdImageSetPixel(img,j,i,gdImageGetPixel(img,width-1-j,i));
+            gdImageSetPixel(img,width-1-j,i,tempcolor);
+        }
+    }
+}
+
+
+void flipvert(gdImagePtr img){
+    int width = gdImageSX(img);
+    int height = gdImageSY(img);
+    int tempcolor;
+
+    for(int i = 0; i<width; i++){
+        for(int j = 0;j<height/2;j++){
+            tempcolor = gdImageGetPixel(img,i,j);
+            gdImageSetPixel(img,i,j,gdImageGetPixel(img,i,height-1-j));
+            gdImageSetPixel(img,i,height-1-j,tempcolor);
+        }
+    }
+}
+
+
 int main(){
     gdImagePtr im;
     std::FILE *in, *out;
@@ -37,11 +67,8 @@ int main(){
     
     printf("%d %d \n",gdImageSX(im),gdImageSY(im));
 
-    for(int i = 0; i<100;i++){
-        printf("x");
-        shiftcol(im,i,100);
-    }
-    printf("\n");
+    flipvert(im);
+    
     out = fopen("newrs.png","wb");
     
     gdImagePng(im, out);

@@ -11,4 +11,7 @@
 void shiftrow(gdImagePtr img, int row, int shamt);
 void shiftcol(gdImagePtr img, int col, int shamt);
 
+void fliphoriz(gdImagePtr img);
+void flipvert(gdImagePtr img);
+
 #endif
