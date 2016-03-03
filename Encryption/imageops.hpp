@@ -1,15 +1,14 @@
 /*
- * An implementation of the Game of Livestock.
+ * Image modification helper functions for encrypting
  */
 
 #ifndef IMAGEOPS_HPP_
 #define IMAGEOPS_HPP_
 
 #include <gd.h>
-#include <iostream>
+#include <cstdio>
 
-void shiftrow(gdImagePtr &img, int row);
-void shiftcol(gdImagePtr &img, int col);
-void modpixel(gdImagePtr &pix, char r, char g, char b);
+void shiftrow(gdImagePtr img, int row, int shamt);
+void shiftcol(gdImagePtr img, int col, int shamt);
 
 #endif
