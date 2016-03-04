@@ -50,11 +50,13 @@ class ChatDialog : public QDialog, private Ui::ChatDialog
 
 public:
     ChatDialog(QWidget *parent = 0);
+    bool showImage(const QString &);
 
 public slots:
     void appendMessage(const QString &from, const QString &message);
 
 private slots:
+    void openImage();
     void returnPressed();
     void newParticipant(const QString &nick);
     void participantLeft(const QString &nick);
