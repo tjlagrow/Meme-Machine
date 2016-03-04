@@ -23,12 +23,12 @@ MessageEncryption::encrypt(gdImagePtr img){
         } else if(currand==1){ // flip vertically
             flipvert(img);
         } else if(currand<=1+FLIP_CHANCE/2){ // shift some rows
-            for(j=0;j<=(currand%(height/3));j++){
-                shiftcol(img,(3*i+j)%height,(7*currand+4*i)%height);
+            for(j=0;j<=(currand%(width/3));j++){
+                shiftcol(img,(3*i+j)%width,(7*currand+4*i)%height);
             }
         } else{  // shift some columns
-            for(j=0;j<=(currand%(width/3));j++){
-                shiftrow(img,(3*i+j)%width,(7*currand+4*i)%width);
+            for(j=0;j<=(currand%(height/3));j++){
+                shiftrow(img,(3*i+j)%height,(7*currand+4*i)%width);
             }
         }
     }
@@ -57,12 +57,12 @@ MessageEncryption::decrypt(gdImagePtr img){
         } else if(currand==1){ // flip vertically
             flipvert(img);
         } else if(currand<=1+FLIP_CHANCE/2){ // shift some rows
-            for(j=0;j<=(currand%(height/3));j++){
-                shiftcol(img,(3*i+j)%height,(-7*currand-4*i)%height+height);
+            for(j=0;j<=(currand%(width/3));j++){
+                shiftcol(img,(3*i+j)%width,(-7*currand-4*i)%height+height);
             }
         } else{  // shift some columns
-            for(j=0;j<=(currand%(width/3));j++){
-                shiftrow(img,(3*i+j)%width,(-7*currand-4*i)%width+width);
+            for(j=0;j<=(currand%(height/3));j++){
+                shiftrow(img,(3*i+j)%height,(-7*currand-4*i)%width+width);
             }
         }
     }
@@ -76,16 +76,18 @@ int main(){
     gdImagePtr im;
     std::FILE *in, *out1, *out2;
     MessageEncryption me (10);
+    
+    printf("a\n");
 
-    in = fopen("rs2ktotal.png","rb");
+    in = fopen("yoshistuff.png","rb");
     im = gdImageCreateFromPng(in);
     
     printf("%d %d \n",gdImageSX(im),gdImageSY(im));
     
     me.encrypt(im);
     
-    out1 = fopen("newrs.png","wb");
-    out2 = fopen("oldrs.png","wb");
+    out1 = fopen("yonew.png","wb");
+    out2 = fopen("yoold.png","wb");
 
     gdImagePng(im, out1);
 
