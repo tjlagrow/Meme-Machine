@@ -8,7 +8,7 @@ all: main
 
 MAIN_OBJECTS = imageops.o encrypt.o
 main: $(MAIN_OBJECTS)
-	$(CXX) -o $@ $(MAIN_OBJECTS)
+	$(CXX) -o $@ $(MAIN_OBJECTS) -lgd
 
 
 clean: 
