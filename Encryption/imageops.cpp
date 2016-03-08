@@ -1,4 +1,5 @@
 #include "imageops.hpp"
+#include <algorithm>
 
 void shiftrow(gdImagePtr img, int row, int shamt){
     int width = gdImageSX(img);
@@ -54,4 +55,17 @@ void flipvert(gdImagePtr img){
             gdImageSetPixel(img,i,height-1-j,tempcolor);
         }
     }
+}
+
+int getexten(std::string path){
+    int result;
+    std::string exten = path.substr(path.find_last_of(".")+1);
+    
+    std::transform(exten.begin(),exten.end(), exten.begin(), ::tolower);
+
+    if(exten== "jpg"||exten=="jpeg"){
+        return 0;
+    } else if(exten=="png"){
+        return 1;
+    } else {return 2;}
 }
