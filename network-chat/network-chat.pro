@@ -13,5 +13,5 @@ FORMS         = chatdialog.ui
 QT           += network widgets
 
 # install
-target.path = $$[QT_INSTALL_EXAMPLES]/network/network-chat
+target.path = $$/Users/tjlagrow/Qt/5.5/ios/bin
 INSTALLS += target
