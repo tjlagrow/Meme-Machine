@@ -50,7 +50,7 @@ ChatDialog::ChatDialog(QWidget *parent)
 
 // Meme generator setup
     lineEdit_2->setFocusPolicy(Qt::StrongFocus);
-    connect(lineEdit_2, SIGNAL(memReturnPressed()), this, SLOT(memeReturnedPressed()));
+    connect(lineEdit_2, SIGNAL(memeReturnPressed()), this, SLOT(memeReturnedPressed()));
 
     lineEdit->setFocusPolicy(Qt::StrongFocus);
     textEdit->setFocusPolicy(Qt::NoFocus);
@@ -106,7 +106,7 @@ void ChatDialog::returnPressed()
     lineEdit->clear();
 }
 
-void ChatDialog::memReturnPressed()
+void ChatDialog::memeReturnPressed()
 {
     QString text = lineEdit_2->text();
     if (text.isEmpty())
