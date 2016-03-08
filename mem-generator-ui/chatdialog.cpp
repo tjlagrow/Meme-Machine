@@ -41,6 +41,7 @@
 #include <QtWidgets>
 
 #include "chatdialog.h"
+#include "test.h"
 
 ChatDialog::ChatDialog(QWidget *parent)
     : QDialog(parent)
@@ -49,6 +50,7 @@ ChatDialog::ChatDialog(QWidget *parent)
 
 // Meme generator setup
     lineEdit_2->setFocusPolicy(Qt::StrongFocus);
+    connect(lineEdit_2, SIGNAL(memReturnPressed()), this, SLOT(memeReturnedPressed()));
 
     lineEdit->setFocusPolicy(Qt::StrongFocus);
     textEdit->setFocusPolicy(Qt::NoFocus);
@@ -102,6 +104,26 @@ void ChatDialog::returnPressed()
     }
 
     lineEdit->clear();
+}
+
+void ChatDialog::memReturnPressed()
+{
+    QString text = lineEdit_2->text();
+    if (text.isEmpty())
+        return;
+
+    if (text.startsWith(QChar('/'))) {
+        QColor color = textEdit->textColor();
+        textEdit->setTextColor(Qt::red);
+        textEdit->append(tr("! Unknown command: %1")
+                         .arg(text.left(text.indexOf(' '))));
+        textEdit->setTextColor(color);
+    } else {
+        // Send to Meme Generator to put on picture
+
+    }
+
+    lineEdit_2->clear();
 }
 
 void ChatDialog::newParticipant(const QString &nick)

@@ -61,6 +61,9 @@ private slots:
     void newParticipant(const QString &nick);
     void participantLeft(const QString &nick);
     void showInformation();
+    // Meme slots
+    void openMeme();
+    void memeReturnedPressed();
 
 private:
     Client client;
