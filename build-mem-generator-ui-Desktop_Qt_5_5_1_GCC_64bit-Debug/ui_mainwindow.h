@@ -13,23 +13,32 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QDialog>
 #include <QtWidgets/QGraphicsView>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QScrollArea>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
-class Ui_MainWindow
+class Ui_ChatDialog
 {
 public:
-    QWidget *centralWidget;
+    QWidget *layoutWidget;
+    QHBoxLayout *hboxLayout;
+    QTextEdit *textEdit;
+    QListWidget *listWidget;
+    QWidget *layoutWidget1;
+    QHBoxLayout *hboxLayout1;
+    QLabel *label;
+    QLineEdit *lineEdit;
+    QGraphicsView *graphicsView;
+    QGraphicsView *graphicsView_2;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
@@ -37,119 +46,115 @@ public:
     QPushButton *pushButton_5;
     QPushButton *pushButton_6;
     QPushButton *pushButton_7;
-    QScrollArea *scrollArea;
-    QWidget *scrollAreaWidgetContents;
-    QTextEdit *textEdit;
-    QGraphicsView *graphicsView;
     QPushButton *pushButton_8;
     QPushButton *pushButton_9;
     QPushButton *pushButton_10;
-    QPushButton *pushButton_11;
-    QPushButton *pushButton_12;
-    QPushButton *pushButton_13;
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
-    QStatusBar *statusBar;
 
-    void setupUi(QMainWindow *MainWindow)
+    void setupUi(QDialog *ChatDialog)
     {
-        if (MainWindow->objectName().isEmpty())
-            MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(761, 493);
-        centralWidget = new QWidget(MainWindow);
-        centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(680, 180, 80, 23));
-        pushButton_2 = new QPushButton(centralWidget);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(479, 410, 91, 23));
-        pushButton_3 = new QPushButton(centralWidget);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(680, 140, 80, 23));
-        pushButton_4 = new QPushButton(centralWidget);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(680, 110, 80, 23));
-        pushButton_5 = new QPushButton(centralWidget);
-        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-        pushButton_5->setGeometry(QRect(680, 70, 80, 23));
-        pushButton_6 = new QPushButton(centralWidget);
-        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        pushButton_6->setGeometry(QRect(680, 40, 80, 23));
-        pushButton_7 = new QPushButton(centralWidget);
-        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-        pushButton_7->setGeometry(QRect(680, 10, 80, 23));
-        scrollArea = new QScrollArea(centralWidget);
-        scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setGeometry(QRect(0, 10, 341, 361));
-        scrollArea->setWidgetResizable(true);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 339, 359));
-        scrollArea->setWidget(scrollAreaWidgetContents);
-        textEdit = new QTextEdit(centralWidget);
+        if (ChatDialog->objectName().isEmpty())
+            ChatDialog->setObjectName(QStringLiteral("ChatDialog"));
+        ChatDialog->resize(1076, 485);
+        layoutWidget = new QWidget(ChatDialog);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(380, 10, 441, 411));
+        hboxLayout = new QHBoxLayout(layoutWidget);
+        hboxLayout->setSpacing(6);
+        hboxLayout->setObjectName(QStringLiteral("hboxLayout"));
+        hboxLayout->setContentsMargins(0, 0, 0, 0);
+        textEdit = new QTextEdit(layoutWidget);
         textEdit->setObjectName(QStringLiteral("textEdit"));
-        textEdit->setGeometry(QRect(0, 380, 341, 51));
-        graphicsView = new QGraphicsView(centralWidget);
+        textEdit->setFocusPolicy(Qt::NoFocus);
+        textEdit->setReadOnly(true);
+
+        hboxLayout->addWidget(textEdit);
+
+        listWidget = new QListWidget(layoutWidget);
+        listWidget->setObjectName(QStringLiteral("listWidget"));
+        listWidget->setMaximumSize(QSize(180, 16777215));
+        listWidget->setFocusPolicy(Qt::NoFocus);
+
+        hboxLayout->addWidget(listWidget);
+
+        layoutWidget1 = new QWidget(ChatDialog);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(380, 430, 441, 25));
+        hboxLayout1 = new QHBoxLayout(layoutWidget1);
+        hboxLayout1->setSpacing(6);
+        hboxLayout1->setObjectName(QStringLiteral("hboxLayout1"));
+        hboxLayout1->setContentsMargins(0, 0, 0, 0);
+        label = new QLabel(layoutWidget1);
+        label->setObjectName(QStringLiteral("label"));
+
+        hboxLayout1->addWidget(label);
+
+        lineEdit = new QLineEdit(layoutWidget1);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+
+        hboxLayout1->addWidget(lineEdit);
+
+        graphicsView = new QGraphicsView(ChatDialog);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
-        graphicsView->setGeometry(QRect(345, 11, 331, 391));
-        pushButton_8 = new QPushButton(centralWidget);
+        graphicsView->setGeometry(QRect(830, 10, 241, 441));
+        graphicsView_2 = new QGraphicsView(ChatDialog);
+        graphicsView_2->setObjectName(QStringLiteral("graphicsView_2"));
+        graphicsView_2->setGeometry(QRect(100, 10, 271, 421));
+        pushButton = new QPushButton(ChatDialog);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(190, 440, 80, 23));
+        pushButton_2 = new QPushButton(ChatDialog);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(10, 10, 80, 23));
+        pushButton_3 = new QPushButton(ChatDialog);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setGeometry(QRect(10, 60, 80, 23));
+        pushButton_4 = new QPushButton(ChatDialog);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButton_4->setGeometry(QRect(10, 110, 80, 23));
+        pushButton_5 = new QPushButton(ChatDialog);
+        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        pushButton_5->setGeometry(QRect(10, 160, 80, 23));
+        pushButton_6 = new QPushButton(ChatDialog);
+        pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
+        pushButton_6->setGeometry(QRect(10, 210, 80, 23));
+        pushButton_7 = new QPushButton(ChatDialog);
+        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
+        pushButton_7->setGeometry(QRect(10, 260, 80, 23));
+        pushButton_8 = new QPushButton(ChatDialog);
         pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
-        pushButton_8->setGeometry(QRect(680, 270, 80, 23));
-        pushButton_9 = new QPushButton(centralWidget);
+        pushButton_8->setGeometry(QRect(10, 310, 80, 23));
+        pushButton_9 = new QPushButton(ChatDialog);
         pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
-        pushButton_9->setGeometry(QRect(680, 380, 80, 23));
-        pushButton_10 = new QPushButton(centralWidget);
+        pushButton_9->setGeometry(QRect(10, 370, 80, 23));
+        pushButton_10 = new QPushButton(ChatDialog);
         pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
-        pushButton_10->setGeometry(QRect(680, 210, 80, 23));
-        pushButton_11 = new QPushButton(centralWidget);
-        pushButton_11->setObjectName(QStringLiteral("pushButton_11"));
-        pushButton_11->setGeometry(QRect(680, 310, 80, 23));
-        pushButton_12 = new QPushButton(centralWidget);
-        pushButton_12->setObjectName(QStringLiteral("pushButton_12"));
-        pushButton_12->setGeometry(QRect(680, 340, 80, 23));
-        pushButton_13 = new QPushButton(centralWidget);
-        pushButton_13->setObjectName(QStringLiteral("pushButton_13"));
-        pushButton_13->setGeometry(QRect(680, 240, 80, 23));
-        MainWindow->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 761, 20));
-        MainWindow->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(MainWindow);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        MainWindow->setStatusBar(statusBar);
+        pushButton_10->setGeometry(QRect(920, 460, 80, 23));
 
-        retranslateUi(MainWindow);
+        retranslateUi(ChatDialog);
 
-        QMetaObject::connectSlotsByName(MainWindow);
+        QMetaObject::connectSlotsByName(ChatDialog);
     } // setupUi
 
-    void retranslateUi(QMainWindow *MainWindow)
+    void retranslateUi(QDialog *ChatDialog)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "PushButton", 0));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Upload Meme", 0));
-        pushButton_3->setText(QApplication::translate("MainWindow", "PushButton", 0));
-        pushButton_4->setText(QApplication::translate("MainWindow", "PushButton", 0));
-        pushButton_5->setText(QApplication::translate("MainWindow", "PushButton", 0));
-        pushButton_6->setText(QApplication::translate("MainWindow", "PushButton", 0));
-        pushButton_7->setText(QApplication::translate("MainWindow", "PushButton", 0));
-        pushButton_8->setText(QApplication::translate("MainWindow", "PushButton", 0));
-        pushButton_9->setText(QApplication::translate("MainWindow", "PushButton", 0));
-        pushButton_10->setText(QApplication::translate("MainWindow", "PushButton", 0));
-        pushButton_11->setText(QApplication::translate("MainWindow", "PushButton", 0));
-        pushButton_12->setText(QApplication::translate("MainWindow", "PushButton", 0));
-        pushButton_13->setText(QApplication::translate("MainWindow", "PushButton", 0));
+        ChatDialog->setWindowTitle(QApplication::translate("ChatDialog", "Chat", 0));
+        label->setText(QApplication::translate("ChatDialog", "Message:", 0));
+        pushButton->setText(QApplication::translate("ChatDialog", "Send Meme", 0));
+        pushButton_2->setText(QApplication::translate("ChatDialog", "PushButton", 0));
+        pushButton_3->setText(QApplication::translate("ChatDialog", "PushButton", 0));
+        pushButton_4->setText(QApplication::translate("ChatDialog", "PushButton", 0));
+        pushButton_5->setText(QApplication::translate("ChatDialog", "PushButton", 0));
+        pushButton_6->setText(QApplication::translate("ChatDialog", "PushButton", 0));
+        pushButton_7->setText(QApplication::translate("ChatDialog", "PushButton", 0));
+        pushButton_8->setText(QApplication::translate("ChatDialog", "PushButton", 0));
+        pushButton_9->setText(QApplication::translate("ChatDialog", "PushButton", 0));
+        pushButton_10->setText(QApplication::translate("ChatDialog", "Decrypt", 0));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class MainWindow: public Ui_MainWindow {};
+    class ChatDialog: public Ui_ChatDialog {};
 } // namespace Ui
 
 QT_END_NAMESPACE
