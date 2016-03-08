@@ -51,6 +51,8 @@ ChatDialog::ChatDialog(QWidget *parent)
 // Meme generator setup
     lineEdit_2->setFocusPolicy(Qt::StrongFocus);
     connect(lineEdit_2, SIGNAL(memeReturnPressed()), this, SLOT(memeReturnedPressed()));
+    memeGenLayout->setPixmap(QPixmap("meme.jpg"));
+
 
     lineEdit->setFocusPolicy(Qt::StrongFocus);
     textEdit->setFocusPolicy(Qt::NoFocus);
@@ -124,6 +126,26 @@ void ChatDialog::memeReturnPressed()
     }
 
     lineEdit_2->clear();
+}
+
+void ChatDialog::openMeme(const QString &path) {
+
+}
+
+void ChatDialog::open()
+{
+    QStringList mimeTypeFilters;
+    foreach (const QByteArray &mimeTypeName, QImageReader::supportedMimeTypes())
+        mimeTypeFilters.append(mimeTypeName);
+    mimeTypeFilters.sort();
+    const QStringList picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
+    QFileDialog dialog(this, tr("Open File"),
+                       picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
+    dialog.setAcceptMode(QFileDialog::AcceptOpen);
+    dialog.setMimeTypeFilters(mimeTypeFilters);
+    dialog.selectMimeTypeFilter("image/jpeg");
+
+    while (dialog.exec() == QDialog::Accepted && !loadFile(dialog.selectedFiles().first())) {}
 }
 
 void ChatDialog::newParticipant(const QString &nick)
