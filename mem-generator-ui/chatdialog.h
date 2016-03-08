@@ -50,7 +50,7 @@ class ChatDialog : public QDialog, private Ui::ChatDialog
 
 public:
     ChatDialog(QWidget *parent = 0);
-    bool showImage(const QString &);
+    void showImage(const QString &);
 
 public slots:
     void appendMessage(const QString &from, const QString &message);
@@ -66,6 +66,9 @@ private:
     Client client;
     QString myNickName;
     QTextTableFormat tableFormat;
+    QLabel *memeDisplay;
+    QLabel *memeGenLayout;
+
 };
 
 #endif

@@ -100,39 +100,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QGraphicsView" name="graphicsView">
-   <property name="geometry">
-    <rect>
-     <x>830</x>
-     <y>10</y>
-     <width>241</width>
-     <height>441</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QGraphicsView" name="graphicsView_2">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>10</y>
-     <width>271</width>
-     <height>421</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>440</y>
-     <width>80</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Send Meme</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
@@ -143,7 +110,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Memeify</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_3">
@@ -156,7 +123,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Filter</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_4">
@@ -169,7 +136,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Meet God</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_5">
@@ -182,7 +149,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Face Swap</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_6">
@@ -195,7 +162,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Encrypt</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_7">
@@ -208,7 +175,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Sepia</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_8">
@@ -221,7 +188,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Grayscale</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_9">
@@ -234,7 +201,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Send Meme</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_10">
@@ -248,6 +215,69 @@
    </property>
    <property name="text">
     <string>Decrypt</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>440</y>
+     <width>311</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="_2">
+    <property name="spacing">
+     <number>6</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Add Text: </string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_2"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="memeDisplay">
+   <property name="geometry">
+    <rect>
+     <x>828</x>
+     <y>14</y>
+     <width>241</width>
+     <height>431</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="memeGenLayout">
+   <property name="geometry">
+    <rect>
+     <x>108</x>
+     <y>14</y>
+     <width>261</width>
+     <height>401</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

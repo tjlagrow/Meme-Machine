@@ -47,6 +47,9 @@ ChatDialog::ChatDialog(QWidget *parent)
 {
     setupUi(this);
 
+// Meme generator setup
+    lineEdit_2->setFocusPolicy(Qt::StrongFocus);
+
     lineEdit->setFocusPolicy(Qt::StrongFocus);
     textEdit->setFocusPolicy(Qt::NoFocus);
     textEdit->setReadOnly(true);
