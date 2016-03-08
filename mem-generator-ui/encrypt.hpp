@@ -5,7 +5,6 @@
 #ifndef MESSAGEENCRYPTION_HPP_
 #define MESSAGEENCRYPTION_HPP_
 
-#include <string>
 #include <cstdlib>
 #include <iostream>
 #include "imageops.hpp"
@@ -18,10 +17,10 @@ public:
     ~MessageEncryption();
     
     
-    gdImagePtr encrypt(gdImagePtr img);
+    void encrypt(std::string imgpath, std::string outpath);
     std::string encrypt(std::string &str);
     
-    gdImagePtr decrypt(gdImagePtr img);
+    void decrypt(std::string imgpath, std::string outpath);
     std::string decrypt(std::string &str);
 
 private:
