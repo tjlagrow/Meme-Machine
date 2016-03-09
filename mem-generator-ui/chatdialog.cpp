@@ -129,7 +129,18 @@ void ChatDialog::memeReturnPressed()
 }
 
 void ChatDialog::openMeme(const QString &path) {
-
+    QImageReader reader(fileName);
+    reader.setAutoTransform(true);
+    const QImage image = reader.read();
+    if (image.isNull()) {
+        QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
+                                 tr("Cannot load %1.").arg(QDir::toNativeSeparators(fileName)));
+        setWindowFilePath(QString());
+        memeGenLayout->setPixmap(QPixmap());
+        return false;
+    } else {
+        memeGenLayout->setPixmap(QPixmap::fromImage(image));
+    }
 }
 
 void ChatDialog::open()
@@ -145,7 +156,7 @@ void ChatDialog::open()
     dialog.setMimeTypeFilters(mimeTypeFilters);
     dialog.selectMimeTypeFilter("image/jpeg");
 
-    while (dialog.exec() == QDialog::Accepted && !loadFile(dialog.selectedFiles().first())) {}
+    while (dialog.exec() == QDialog::Accepted && !openMeme(dialog.selectedFiles().first())) {}
 }
 
 void ChatDialog::newParticipant(const QString &nick)
