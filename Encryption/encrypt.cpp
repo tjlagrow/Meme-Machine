@@ -65,7 +65,7 @@ MessageEncryption::encrypt(std::string imgpath,std::string outpath){
 }
 
 std::string
-MessageEncryption::encrypt(std::string &str){return NULL;}
+MessageEncryption::encrypt(std::string str){return str;}
     
 
 void
@@ -122,7 +122,7 @@ MessageEncryption::decrypt(std::string imgpath,std::string outpath){
 }
 
 std::string
-MessageEncryption::decrypt(std::string &str){return NULL;}
+MessageEncryption::decrypt(std::string str){return str;}
 
 int main(){
     MessageEncryption me (10);

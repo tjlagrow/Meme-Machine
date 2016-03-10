@@ -12,25 +12,21 @@ QEncryption(int key){
 void QEncryption::encryptimage(QString inpath, QString outpath){
     std::string newinpath = inpath.toStdString();
     std::string newoutpath = outpath.toStdString();
-    
+    (this->me).encrypt(newinpath,newoutpath);
 }
 
 void QEncryption::decryptimage(QString inpath, QString outpath){
     std::string newinpath = inpath.toStdString();
     std::string newoutpath = outpath.toStdString();
-
+    (this->me).decrypt(newinpath,newoutpath);
 }
 
-void QEncryption::encrypttext(QString inpath, QString outpath){
-    std::string newinpath = inpath.toStdString();
-    std::string newoutpath = outpath.toStdString();
-
+QString QEncryption::encrypttext(QString text){
+    std::string newtext = text.toStdString();
+    return QString::fromStdString((this->me).encrypt(newtext));
 }
 
-void QEncryption::decrypttext(QString inpath, QString outpah){
-    std::string newinpath = inpath.toStdString();
-    std::string newoutpath = outpath.toStdString();
-
+QString QEncryption::decrypttext(QString text){
+    std::string newtext = text.toStdString();
+    return QString::fromStdString((this->me).decrypt(newtext));
 }
-
-#endif
