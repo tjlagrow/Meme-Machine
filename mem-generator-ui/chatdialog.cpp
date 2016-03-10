@@ -42,6 +42,7 @@
 
 #include "chatdialog.h"
 #include "test.h"
+#include "encrypt.hpp"
 
 ChatDialog::ChatDialog(QWidget *parent)
     : QDialog(parent)
@@ -54,8 +55,6 @@ ChatDialog::ChatDialog(QWidget *parent)
     lineEdit_2->setFocusPolicy(Qt::StrongFocus);
     connect(lineEdit_2, SIGNAL(returnPressed()), this, SLOT(memeReturnedPressed()));
     memeGenLayout->setPixmap(QPixmap("meme.jpg"));
-// Open file picker to
-//    connect(loadMemeButton, SIGNAL(released()), this, SLOT(open()));
 
 
     lineEdit->setFocusPolicy(Qt::StrongFocus);
@@ -151,6 +150,7 @@ bool ChatDialog::openMeme(const QString &fileName) {
 
 void ChatDialog::open()
 {
+    QString first_path;
     QStringList mimeTypeFilters;
     foreach (const QByteArray &mimeTypeName, QImageReader::supportedMimeTypes())
         mimeTypeFilters.append(mimeTypeName);
@@ -206,4 +206,15 @@ void ChatDialog::showInformation()
 void ChatDialog::on_pushButton_4_clicked()
 {
     ChatDialog::open();
+}
+
+void ChatDialog::on_pushButton_6_clicked()
+{
+    // Encrypt Button
+
+}
+
+void ChatDialog::on_pushButton_10_clicked()
+{
+    // Decrypt Button
 }
