@@ -38,42 +38,20 @@
 **
 ****************************************************************************/
 
-#ifndef CHATDIALOG_H
-#define CHATDIALOG_H
+#include <QtNetwork>
 
-#include "ui_chatdialog.h"
-#include "client.h"
+#include "connection.h"
+#include "server.h"
 
-class ChatDialog : public QDialog, private Ui::ChatDialog
+Server::Server(QObject *parent)
+    : QTcpServer(parent)
 {
-    Q_OBJECT
+    listen(QHostAddress::Any);
+}
 
-public:
-    ChatDialog(QWidget *parent = 0);
-    void showImage(const QString &);
-
-public slots:
-    void appendMessage(const QString &from, const QString &message);
-
-private slots:
-    void returnPressed();
-    void newParticipant(const QString &nick);
-    void participantLeft(const QString &nick);
-    void showInformation();
-    bool openMeme(const QString &fileName);
-    void open();
-    void memeReturnedPressed();
-
-    void on_pushButton_4_clicked();
-
-private:
-    Client client;
-    QString myNickName;
-    QTextTableFormat tableFormat;
-    QPushButton *loadMemeButton;
-    QPushButton *encryptButton;
-    QPushButton *decryptButton;
-
-};
-
-#endif
+void Server::incomingConnection(qintptr socketDescriptor)
+{
+    Connection *connection = new Connection(this);
+    connection->setSocketDescriptor(socketDescriptor);
+    emit newConnection(connection);
+}

@@ -48,7 +48,6 @@ ChatDialog::ChatDialog(QWidget *parent)
 {
     setupUi(this);
 
-//    loadMemeButton->window()->findChild<QPushButton*>("loadMemeButton");
     QString first_path = QDir::currentPath();
     QString final_path = QDir::currentPath();
 // Meme generator setup
@@ -202,4 +201,9 @@ void ChatDialog::showInformation()
                                     "program on your local network and "
                                     "start chatting!"));
     }
+}
+
+void ChatDialog::on_pushButton_4_clicked()
+{
+    ChatDialog::open();
 }
