@@ -48,14 +48,15 @@ ChatDialog::ChatDialog(QWidget *parent)
 {
     setupUi(this);
 
+//    loadMemeButton->window()->findChild<QPushButton*>("loadMemeButton");
     QString first_path = QDir::currentPath();
     QString final_path = QDir::currentPath();
 // Meme generator setup
     lineEdit_2->setFocusPolicy(Qt::StrongFocus);
-    connect(lineEdit_2, SIGNAL(memeReturnPressed()), this, SLOT(memeReturnedPressed()));
+    connect(lineEdit_2, SIGNAL(returnPressed()), this, SLOT(memeReturnedPressed()));
     memeGenLayout->setPixmap(QPixmap("meme.jpg"));
 // Open file picker to
-    connect(loadMemeButton, SIGNAL(released()), this, SLOT(open());
+//    connect(loadMemeButton, SIGNAL(released()), this, SLOT(open()));
 
 
     lineEdit->setFocusPolicy(Qt::StrongFocus);
@@ -112,7 +113,7 @@ void ChatDialog::returnPressed()
     lineEdit->clear();
 }
 
-void ChatDialog::memeReturnPressed()
+void ChatDialog::memeReturnedPressed()
 {
     QString text = lineEdit_2->text();
     if (text.isEmpty())
@@ -126,13 +127,14 @@ void ChatDialog::memeReturnPressed()
         textEdit->setTextColor(color);
     } else {
         // Send to Meme Generator to put on picture
-
+        client.sendMessage(text);
+        appendMessage(myNickName, text);
     }
 
     lineEdit_2->clear();
 }
 
-void ChatDialog::openMeme(const QString &path) {
+bool ChatDialog::openMeme(const QString &fileName) {
     QImageReader reader(fileName);
     reader.setAutoTransform(true);
     const QImage image = reader.read();
@@ -144,6 +146,7 @@ void ChatDialog::openMeme(const QString &path) {
         return false;
     } else {
         memeGenLayout->setPixmap(QPixmap::fromImage(image));
+        return true;
     }
 }
 
