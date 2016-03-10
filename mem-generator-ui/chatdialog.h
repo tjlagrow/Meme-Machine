@@ -62,15 +62,14 @@ private slots:
     void participantLeft(const QString &nick);
     void showInformation();
     // Meme slots
-    void openMeme();
+    void openMeme(const QString &path);
+    void open();
     void memeReturnedPressed();
 
 private:
     Client client;
     QString myNickName;
     QTextTableFormat tableFormat;
-    QLabel *memeDisplay;
-    QLabel *memeGenLayout;
 
 };
 

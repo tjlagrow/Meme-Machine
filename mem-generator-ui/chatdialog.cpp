@@ -48,10 +48,14 @@ ChatDialog::ChatDialog(QWidget *parent)
 {
     setupUi(this);
 
+    QString first_path = QDir::currentPath();
+    QString final_path = QDir::currentPath();
 // Meme generator setup
     lineEdit_2->setFocusPolicy(Qt::StrongFocus);
     connect(lineEdit_2, SIGNAL(memeReturnPressed()), this, SLOT(memeReturnedPressed()));
     memeGenLayout->setPixmap(QPixmap("meme.jpg"));
+// Open file picker to
+    connect(loadMemeButton, SIGNAL(released()), this, SLOT(open());
 
 
     lineEdit->setFocusPolicy(Qt::StrongFocus);
