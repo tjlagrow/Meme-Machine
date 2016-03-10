@@ -41,11 +41,18 @@
 #include <QtWidgets>
 
 #include "chatdialog.h"
+#include "test.h"
 
 ChatDialog::ChatDialog(QWidget *parent)
     : QDialog(parent)
 {
     setupUi(this);
+
+// Meme generator setup
+    lineEdit_2->setFocusPolicy(Qt::StrongFocus);
+    connect(lineEdit_2, SIGNAL(memeReturnPressed()), this, SLOT(memeReturnedPressed()));
+    memeGenLayout->setPixmap(QPixmap("meme.jpg"));
+
 
     lineEdit->setFocusPolicy(Qt::StrongFocus);
     textEdit->setFocusPolicy(Qt::NoFocus);
@@ -99,6 +106,57 @@ void ChatDialog::returnPressed()
     }
 
     lineEdit->clear();
+}
+
+void ChatDialog::memeReturnPressed()
+{
+    QString text = lineEdit_2->text();
+    if (text.isEmpty())
+        return;
+
+    if (text.startsWith(QChar('/'))) {
+        QColor color = textEdit->textColor();
+        textEdit->setTextColor(Qt::red);
+        textEdit->append(tr("! Unknown command: %1")
+                         .arg(text.left(text.indexOf(' '))));
+        textEdit->setTextColor(color);
+    } else {
+        // Send to Meme Generator to put on picture
+
+    }
+
+    lineEdit_2->clear();
+}
+
+void ChatDialog::openMeme(const QString &path) {
+    QImageReader reader(fileName);
+    reader.setAutoTransform(true);
+    const QImage image = reader.read();
+    if (image.isNull()) {
+        QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
+                                 tr("Cannot load %1.").arg(QDir::toNativeSeparators(fileName)));
+        setWindowFilePath(QString());
+        memeGenLayout->setPixmap(QPixmap());
+        return false;
+    } else {
+        memeGenLayout->setPixmap(QPixmap::fromImage(image));
+    }
+}
+
+void ChatDialog::open()
+{
+    QStringList mimeTypeFilters;
+    foreach (const QByteArray &mimeTypeName, QImageReader::supportedMimeTypes())
+        mimeTypeFilters.append(mimeTypeName);
+    mimeTypeFilters.sort();
+    const QStringList picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
+    QFileDialog dialog(this, tr("Open File"),
+                       picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
+    dialog.setAcceptMode(QFileDialog::AcceptOpen);
+    dialog.setMimeTypeFilters(mimeTypeFilters);
+    dialog.selectMimeTypeFilter("image/jpeg");
+
+    while (dialog.exec() == QDialog::Accepted && !openMeme(dialog.selectedFiles().first())) {}
 }
 
 void ChatDialog::newParticipant(const QString &nick)
