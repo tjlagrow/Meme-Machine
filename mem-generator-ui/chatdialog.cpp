@@ -154,7 +154,6 @@ void ChatDialog::open()
                        picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
     dialog.setAcceptMode(QFileDialog::AcceptOpen);
     dialog.setMimeTypeFilters(mimeTypeFilters);
-    dialog.selectMimeTypeFilter("image/jpeg");
 
     while (dialog.exec() == QDialog::Accepted && !openMeme(dialog.selectedFiles().first())) {}
 }
