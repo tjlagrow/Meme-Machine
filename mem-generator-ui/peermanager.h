@@ -38,46 +38,47 @@
 **
 ****************************************************************************/
 
-#ifndef CHATDIALOG_H
-#define CHATDIALOG_H
+#ifndef PEERMANAGER_H
+#define PEERMANAGER_H
 
-#include "ui_chatdialog.h"
-#include "client.h"
+#include <QByteArray>
+#include <QList>
+#include <QObject>
+#include <QTimer>
+#include <QUdpSocket>
 
-class ChatDialog : public QDialog, private Ui::ChatDialog
+class Client;
+class Connection;
+
+class PeerManager : public QObject
 {
     Q_OBJECT
 
 public:
-    ChatDialog(QWidget *parent = 0);
-    void showImage(const QString &);
+    PeerManager(Client *client);
 
-public slots:
-    void appendMessage(const QString &from, const QString &message);
+    void setServerPort(int port);
+    QByteArray userName() const;
+    void startBroadcasting();
+    bool isLocalHostAddress(const QHostAddress &address);
+
+signals:
+    void newConnection(Connection *connection);
 
 private slots:
-    void returnPressed();
-    void newParticipant(const QString &nick);
-    void participantLeft(const QString &nick);
-    void showInformation();
-    bool openMeme(const QString &fileName);
-    void open();
-    void memeReturnedPressed();
-
-    void on_pushButton_4_clicked();
-
-    void on_pushButton_6_clicked();
-
-    void on_pushButton_10_clicked();
+    void sendBroadcastDatagram();
+    void readBroadcastDatagram();
 
 private:
-    Client client;
-    QString myNickName;
-    QTextTableFormat tableFormat;
-    QPushButton *loadMemeButton;
-    QPushButton *encryptButton;
-    QPushButton *decryptButton;
+    void updateAddresses();
 
+    Client *client;
+    QList<QHostAddress> broadcastAddresses;
+    QList<QHostAddress> ipAddresses;
+    QUdpSocket broadcastSocket;
+    QTimer broadcastTimer;
+    QByteArray username;
+    int serverPort;
 };
 
 #endif

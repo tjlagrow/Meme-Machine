@@ -38,46 +38,45 @@
 **
 ****************************************************************************/
 
-#ifndef CHATDIALOG_H
-#define CHATDIALOG_H
+#ifndef CLIENT_H
+#define CLIENT_H
 
-#include "ui_chatdialog.h"
-#include "client.h"
+#include <QAbstractSocket>
+#include <QHash>
+#include <QHostAddress>
 
-class ChatDialog : public QDialog, private Ui::ChatDialog
+#include "server.h"
+
+class PeerManager;
+
+class Client : public QObject
 {
     Q_OBJECT
 
 public:
-    ChatDialog(QWidget *parent = 0);
-    void showImage(const QString &);
+    Client();
 
-public slots:
-    void appendMessage(const QString &from, const QString &message);
+    void sendMessage(const QString &message);
+    QString nickName() const;
+    bool hasConnection(const QHostAddress &senderIp, int senderPort = -1) const;
 
-private slots:
-    void returnPressed();
+signals:
+    void newMessage(const QString &from, const QString &message);
     void newParticipant(const QString &nick);
     void participantLeft(const QString &nick);
-    void showInformation();
-    bool openMeme(const QString &fileName);
-    void open();
-    void memeReturnedPressed();
 
-    void on_pushButton_4_clicked();
-
-    void on_pushButton_6_clicked();
-
-    void on_pushButton_10_clicked();
+private slots:
+    void newConnection(Connection *connection);
+    void connectionError(QAbstractSocket::SocketError socketError);
+    void disconnected();
+    void readyForUse();
 
 private:
-    Client client;
-    QString myNickName;
-    QTextTableFormat tableFormat;
-    QPushButton *loadMemeButton;
-    QPushButton *encryptButton;
-    QPushButton *decryptButton;
+    void removeConnection(Connection *connection);
 
+    PeerManager *peerManager;
+    Server server;
+    QMultiHash<QHostAddress, Connection *> peers;
 };
 
 #endif

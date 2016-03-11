@@ -42,15 +42,18 @@
 
 #include "chatdialog.h"
 #include "test.h"
+#include "encrypt.hpp"
 
 ChatDialog::ChatDialog(QWidget *parent)
     : QDialog(parent)
 {
     setupUi(this);
 
+    QString first_path = QDir::currentPath();
+    QString final_path = QDir::currentPath();
 // Meme generator setup
     lineEdit_2->setFocusPolicy(Qt::StrongFocus);
-    connect(lineEdit_2, SIGNAL(memeReturnPressed()), this, SLOT(memeReturnedPressed()));
+    connect(lineEdit_2, SIGNAL(returnPressed()), this, SLOT(memeReturnedPressed()));
     memeGenLayout->setPixmap(QPixmap("meme.jpg"));
 
 
@@ -108,7 +111,7 @@ void ChatDialog::returnPressed()
     lineEdit->clear();
 }
 
-void ChatDialog::memeReturnPressed()
+void ChatDialog::memeReturnedPressed()
 {
     QString text = lineEdit_2->text();
     if (text.isEmpty())
@@ -122,13 +125,14 @@ void ChatDialog::memeReturnPressed()
         textEdit->setTextColor(color);
     } else {
         // Send to Meme Generator to put on picture
-
+        client.sendMessage(text);
+        appendMessage(myNickName, text);
     }
 
     lineEdit_2->clear();
 }
 
-void ChatDialog::openMeme(const QString &path) {
+bool ChatDialog::openMeme(const QString &fileName) {
     QImageReader reader(fileName);
     reader.setAutoTransform(true);
     const QImage image = reader.read();
@@ -140,11 +144,13 @@ void ChatDialog::openMeme(const QString &path) {
         return false;
     } else {
         memeGenLayout->setPixmap(QPixmap::fromImage(image));
+        return true;
     }
 }
 
 void ChatDialog::open()
 {
+    QString first_path;
     QStringList mimeTypeFilters;
     foreach (const QByteArray &mimeTypeName, QImageReader::supportedMimeTypes())
         mimeTypeFilters.append(mimeTypeName);
@@ -154,7 +160,6 @@ void ChatDialog::open()
                        picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
     dialog.setAcceptMode(QFileDialog::AcceptOpen);
     dialog.setMimeTypeFilters(mimeTypeFilters);
-    dialog.selectMimeTypeFilter("image/jpeg");
 
     while (dialog.exec() == QDialog::Accepted && !openMeme(dialog.selectedFiles().first())) {}
 }
@@ -196,4 +201,50 @@ void ChatDialog::showInformation()
                                     "program on your local network and "
                                     "start chatting!"));
     }
+}
+
+void ChatDialog::on_pushButton_4_clicked()
+{
+    ChatDialog::open();
+}
+
+void ChatDialog::on_pushButton_6_clicked()
+{
+    // Encrypt Button
+
+}
+
+void ChatDialog::on_pushButton_10_clicked()
+{
+    // Decrypt Button
+}
+
+void ChatDialog::on_pushButton_9_clicked()
+{
+    // Send Meme
+}
+
+void ChatDialog::on_pushButton_8_clicked()
+{
+    // Grayscale
+}
+
+void ChatDialog::on_pushButton_7_clicked()
+{
+    // Sepia
+}
+
+void ChatDialog::on_pushButton_5_clicked()
+{
+    //Face Swap
+}
+
+void ChatDialog::on_pushButton_3_clicked()
+{
+    // Filter
+}
+
+void ChatDialog::on_pushButton_2_clicked()
+{
+    // Memefiy (Do all of them)
 }

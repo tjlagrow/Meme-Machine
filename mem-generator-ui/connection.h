@@ -38,46 +38,70 @@
 **
 ****************************************************************************/
 
-#ifndef CHATDIALOG_H
-#define CHATDIALOG_H
+#ifndef CONNECTION_H
+#define CONNECTION_H
 
-#include "ui_chatdialog.h"
-#include "client.h"
+#include <QHostAddress>
+#include <QString>
+#include <QTcpSocket>
+#include <QTime>
+#include <QTimer>
 
-class ChatDialog : public QDialog, private Ui::ChatDialog
+static const int MaxBufferSize = 1024000;
+
+class Connection : public QTcpSocket
 {
     Q_OBJECT
 
 public:
-    ChatDialog(QWidget *parent = 0);
-    void showImage(const QString &);
+    enum ConnectionState {
+        WaitingForGreeting,
+        ReadingGreeting,
+        ReadyForUse
+    };
+    enum DataType {
+        PlainText,
+        Ping,
+        Pong,
+        Greeting,
+        Undefined
+    };
 
-public slots:
-    void appendMessage(const QString &from, const QString &message);
+    Connection(QObject *parent = 0);
+
+    QString name() const;
+    void setGreetingMessage(const QString &message);
+    bool sendMessage(const QString &message);
+
+signals:
+    void readyForUse();
+    void newMessage(const QString &from, const QString &message);
+
+protected:
+    void timerEvent(QTimerEvent *timerEvent) Q_DECL_OVERRIDE;
 
 private slots:
-    void returnPressed();
-    void newParticipant(const QString &nick);
-    void participantLeft(const QString &nick);
-    void showInformation();
-    bool openMeme(const QString &fileName);
-    void open();
-    void memeReturnedPressed();
-
-    void on_pushButton_4_clicked();
-
-    void on_pushButton_6_clicked();
-
-    void on_pushButton_10_clicked();
+    void processReadyRead();
+    void sendPing();
+    void sendGreetingMessage();
 
 private:
-    Client client;
-    QString myNickName;
-    QTextTableFormat tableFormat;
-    QPushButton *loadMemeButton;
-    QPushButton *encryptButton;
-    QPushButton *decryptButton;
+    int readDataIntoBuffer(int maxSize = MaxBufferSize);
+    int dataLengthForCurrentDataType();
+    bool readProtocolHeader();
+    bool hasEnoughData();
+    void processData();
 
+    QString greetingMessage;
+    QString username;
+    QTimer pingTimer;
+    QTime pongTime;
+    QByteArray buffer;
+    ConnectionState state;
+    DataType currentDataType;
+    int numBytesForCurrentDataType;
+    int transferTimerId;
+    bool isGreetingMessageSent;
 };
 
 #endif

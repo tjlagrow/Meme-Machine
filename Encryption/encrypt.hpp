@@ -1,5 +1,5 @@
 /*
- * An implementation of the Game of Livestock.
+ * 
  */
 
 #ifndef MESSAGEENCRYPTION_HPP_
@@ -18,10 +18,10 @@ public:
     
     
     void encrypt(std::string imgpath, std::string outpath);
-    std::string encrypt(std::string &str);
+    std::string encrypt(std::string str);
     
     void decrypt(std::string imgpath, std::string outpath);
-    std::string decrypt(std::string &str);
+    std::string decrypt(std::string str);
 
 private:
 	
