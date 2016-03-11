@@ -1,4 +1,5 @@
 #include "memeGeneration.hpp"
+// #include "imageops.hpp"
 
 #include "gd.h"
 #include "gdfontg.h"
@@ -75,8 +76,8 @@ void Meme::generateMeme(string memeText, string inPath, string outPath){
     black = gdImageColorAllocate(im, 0, 0, 0);  
     white = gdImageColorAllocate(im, 255, 255, 255);  
     gdImageString(im, gdFontGetGiant(),
-      im->sx / 2 - (len * gdFontGetGiant()->w / 2),
-      im->sy / 12 - gdFontGetGiant()->h / 2,
+      gdImageSX(im) / 2 - (len * gdFontGetGiant()->w / 2),
+      gdImageSY(im) / 12 - gdFontGetGiant()->h / 2,
       val, black);
     out = fopen(strFinalOutPath, "wb");
     if (!out) {
@@ -96,12 +97,14 @@ void Meme::generateMeme(string memeText, string inPath, string outPath){
 }
 
 int main (int argc, char *argv[]){
+    Meme meme;
+
     string memeText = "This is a dank meme";
     // string inPath = "inTestFilePath/internetKid.png";
     string inPath = "mypicture.png";
     string outPath = "testFilePath/mypicture.png";
     // string outPath = "internetKid.png";
-  generateMeme(memeText, inPath, outPath);
+  meme.generateMeme(memeText, inPath, outPath);
 
 
 }

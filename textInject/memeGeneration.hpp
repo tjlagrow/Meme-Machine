@@ -1,6 +1,7 @@
 #ifndef MEME_HPP_
 #define MEME_HPP_
 
+// #include "imageops.hpp"
 #include "gd.h"
 #include "gdfontg.h"
 #include <cstring>
