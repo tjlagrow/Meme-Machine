@@ -14,10 +14,10 @@ public:
     ~QEncryption();
 
 public slots:
-    void encryptimage(std::string);
-    void decryptimage(std::string); 
-    void encrypttext(std::string);
-    void decrypttext(std::string);
+    void encryptimage(QString,QString);
+    void decryptimage(QString,QString); 
+    QString encrypttext(QString);
+    QString decrypttext(QString);
 
 private:
     MessageEncryption me;
