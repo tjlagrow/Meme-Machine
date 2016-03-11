@@ -41,21 +41,20 @@ void generateMeme(string memeText, string inPath, string outPath){
      gdImagePtr im;
     FILE* out;
     FILE* in;
-    int black, white, len;
-    string fileName, fileExt, postMemeName;
+    int black, white, len, fileExt;
+    string fileName;
 
     fileName = getFileName(inPath);
 
     if (fileName.length()==0){
-        cout << "no path for input";
         fileName = inPath;
     }
 
     fileExt = getexten(fileName);
 
-    string finalOutPath = outPath+fileName;
+    // string finalOutPath = outPath+fileName; in case path is given without file name
 
-    const char* strFinalOutPath = finalOutPath.c_str();
+    const char* strFinalOutPath = outPath.c_str();
     const char* strFinalInPath = inPath.c_str();
 
     in = fopen(strFinalInPath, "rb");
@@ -63,7 +62,14 @@ void generateMeme(string memeText, string inPath, string outPath){
     unsigned char *val=new unsigned char[len+1];
     strcpy((char *)val,memeText.c_str());
 
-    im = gdImageCreateFromPng(in);
+    if (fileExt==0){
+        im = gdImageCreateFromJpeg(in);
+    }
+
+    else if (fileExt==1){
+        im = gdImageCreateFromPng(in);
+    }
+    // im = gdImageCreateFromPng(in);
     black = gdImageColorAllocate(im, 0, 0, 0);  
     white = gdImageColorAllocate(im, 255, 255, 255);  
     gdImageString(im, gdFontGetGiant(),
@@ -74,17 +80,25 @@ void generateMeme(string memeText, string inPath, string outPath){
     if (!out) {
             fprintf(stderr, "Can't create your meme. Serious bummer.\n");
     }
-    gdImagePng(im, out);
+
+    if (fileExt==0){
+        gdImageJpeg(im, out, -1);
+    }
+
+    else if (fileExt==1){
+        gdImagePng(im, out);
+    }
+    // gdImagePng(im, out);
     fclose(out);
     gdImageDestroy(im);
 }
 
 int main (int argc, char *argv[]){
     string memeText = "This is a dank meme";
-    // string inPath = "inTestFilePath/internetKid.jpg";
+    // string inPath = "inTestFilePath/internetKid.png";
     string inPath = "mypicture.png";
-    // string outPath = "testFilePath/";
-    string outPath = "";
+    string outPath = "testFilePath/mypicture.png";
+    // string outPath = "internetKid.png";
   generateMeme(memeText, inPath, outPath);
 
 
