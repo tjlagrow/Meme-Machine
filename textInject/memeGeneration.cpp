@@ -41,7 +41,10 @@ string Meme::getFileName(const string& s){
 
 void Meme::generateMeme(string memeText, string inPath, string outPath){
 
-     gdImagePtr im;
+
+    char *f = "impact.ttf";  /* User supplied font PLEASE WORK*/
+
+    gdImagePtr im;
     FILE* out;
     FILE* in;
     int black, white, len, fileExt;
