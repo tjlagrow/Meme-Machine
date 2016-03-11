@@ -1,3 +1,5 @@
+#include "memeGeneration.hpp"
+
 #include "gd.h"
 #include "gdfontg.h"
 #include <cstring>
@@ -8,7 +10,7 @@
 
 using namespace std;
 
-int getexten(string path){
+int Meme::getexten(string path){
     int result;
     string exten = path.substr(path.find_last_of(".")+1);
     
@@ -21,7 +23,7 @@ int getexten(string path){
     } else {return 2;}
 }
 
-string getFileName(const string& s){
+string Meme::getFileName(const string& s){
     char sep = '/';
 
     #ifdef _WIN32
@@ -36,7 +38,7 @@ string getFileName(const string& s){
    return("");
 }
 
-void generateMeme(string memeText, string inPath, string outPath){
+void Meme::generateMeme(string memeText, string inPath, string outPath){
 
      gdImagePtr im;
     FILE* out;

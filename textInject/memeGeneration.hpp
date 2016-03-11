@@ -1,5 +1,5 @@
-#ifndef TEXTINJECT_HPP_
-#define TEXTINJECT_HPP_
+#ifndef MEME_HPP_
+#define MEME_HPP_
 
 #include "gd.h"
 #include "gdfontg.h"
@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class textInject {
+class Meme {
 public:
 
 	int getexten(string path);
@@ -20,4 +20,4 @@ public:
 
 };
 
-#endif /* TEXTINJECT_HPP_ */
+#endif /* MEMEHPP_ */
