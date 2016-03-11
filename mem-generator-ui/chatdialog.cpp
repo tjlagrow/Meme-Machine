@@ -44,9 +44,10 @@
 #include "test.h"
 #include <random>
 
-QString memepath = "/home/meme/Documents/memesf/mem-generator-ui/inTestFilePath/meme.jpg";
-QString first_path = QDir::currentPath();
-QString final_path = QDir::currentPath();
+QString memepath = "/home/meme/Documents/memesf/mem-generator-ui/inTestFilePath/";
+QString memefile = "meme.jpg";
+QString left_path  = memefile;
+QString right_path = memefile;
 
 ChatDialog::ChatDialog(QWidget *parent)
     : QDialog(parent)
@@ -55,9 +56,9 @@ ChatDialog::ChatDialog(QWidget *parent)
 // Meme generator setup
     lineEdit_2->setFocusPolicy(Qt::StrongFocus);
     connect(lineEdit_2, SIGNAL(returnPressed()), this, SLOT(memeReturnedPressed()));
-    memeGenLayout->setPixmap(QPixmap(memepath));
+    memeGenLayout->setPixmap(QPixmap(memepath+memefile));
     std::default_random_engine rand (100);
-    this->qme =(new QEncryption(rand()));
+    this->qme =new QEncryption(rand());
 
     lineEdit->setFocusPolicy(Qt::StrongFocus);
     textEdit->setFocusPolicy(Qt::NoFocus);
@@ -133,7 +134,7 @@ void ChatDialog::memeReturnedPressed()
     lineEdit_2->clear();
 }
 
-bool ChatDialog::openMeme(const QString &fileName) {
+bool ChatDialog::openMeme(const QString &fileName,bool fromFile) {
     QImageReader reader(fileName);
     reader.setAutoTransform(true);
     const QImage image = reader.read();
@@ -144,8 +145,10 @@ bool ChatDialog::openMeme(const QString &fileName) {
         memeGenLayout->setPixmap(QPixmap());
         return false;
     } else {
-        first_path = fileName;
-        final_path = "new" + fileName;
+        std::string stdname = fileName.toStdString();
+        QString name = QString::fromStdString(stdname.substr(stdname.find_last_of("/")+1));
+        if(fromFile){memefile = name;}
+        left_path = name;
         memeGenLayout->setPixmap(QPixmap::fromImage(image));
         return true;
     }
@@ -153,7 +156,6 @@ bool ChatDialog::openMeme(const QString &fileName) {
 
 void ChatDialog::open()
 {
-    QString first_path;
     QStringList mimeTypeFilters;
     foreach (const QByteArray &mimeTypeName, QImageReader::supportedMimeTypes())
         mimeTypeFilters.append(mimeTypeName);
@@ -163,9 +165,26 @@ void ChatDialog::open()
                        picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
     dialog.setAcceptMode(QFileDialog::AcceptOpen);
     dialog.setMimeTypeFilters(mimeTypeFilters);
-
-    while (dialog.exec() == QDialog::Accepted && !openMeme(dialog.selectedFiles().first())) {}
+    while (dialog.exec() == QDialog::Accepted && !openMeme(dialog.selectedFiles().first(),true)) {}
 }
+
+bool ChatDialog::sendMeme() {
+    QImageReader reader(memepath+left_path);
+    reader.setAutoTransform(true);
+    const QImage image = reader.read();
+    if (image.isNull()) {
+        QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
+                                 tr("Cannot load %1.").arg(QDir::toNativeSeparators(memepath+left_path)));
+        setWindowFilePath(QString());
+        memeDisplay->setPixmap(QPixmap());
+        return false;
+    } else {
+        right_path = left_path;
+        memeDisplay->setPixmap(QPixmap::fromImage(image));
+        return true;
+    }
+}
+
 
 void ChatDialog::newParticipant(const QString &nick)
 {
@@ -213,17 +232,19 @@ void ChatDialog::on_pushButton_4_clicked()
 
 void ChatDialog::on_pushButton_6_clicked()
 {
-    (this->qme)->encryptimage(memepath,memepath);
-}
-
-void ChatDialog::on_pushButton_10_clicked()
-{
-    (this->qme)->decryptimage(memepath,memepath);
+    (this->qme)->encryptimage(memepath+left_path,memepath+"e"+left_path);
+    openMeme(memepath+"e"+left_path,false);
 }
 
 void ChatDialog::on_pushButton_9_clicked()
 {
-    // Send Meme
+    (this->qme)->decryptimage(memepath+left_path,memepath+"d"+left_path);
+    openMeme(memepath+"d"+left_path,false);
+}
+
+void ChatDialog::on_pushButton_10_clicked()
+{
+    ChatDialog::sendMeme();
 }
 
 void ChatDialog::on_pushButton_8_clicked()

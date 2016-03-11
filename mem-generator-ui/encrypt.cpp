@@ -16,10 +16,7 @@ MessageEncryption::encrypt(std::string imgpath,std::string outpath){
     int currand; int i, j;
     int width, height;
     FILE* in, *out; gdImagePtr img;
-    printf("o\n");
     int ext = getexten(imgpath);
-
-    printf("a\n");
     
     in = fopen(imgpath.c_str(),"rb");
     if(ext==0){
@@ -30,8 +27,6 @@ MessageEncryption::encrypt(std::string imgpath,std::string outpath){
         exit(1);
     }
     fclose(in);
-
-    printf("b\n");
 
     width = gdImageSX(img); height = gdImageSY(img);
     
@@ -51,7 +46,7 @@ MessageEncryption::encrypt(std::string imgpath,std::string outpath){
             }
         }
     }
-    printf("c\n");
+
     ext = getexten(outpath);
     out = fopen(outpath.c_str(),"wb");
     if(ext==0){

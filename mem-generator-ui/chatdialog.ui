@@ -69,7 +69,7 @@
      <x>380</x>
      <y>430</y>
      <width>441</width>
-     <height>25</height>
+     <height>29</height>
     </rect>
    </property>
    <layout class="QHBoxLayout">
@@ -201,7 +201,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Send Meme</string>
+    <string>Decrypt</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_10">
@@ -214,7 +214,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Decrypt</string>
+    <string>Send Meme</string>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget_2">
@@ -223,7 +223,7 @@
      <x>60</x>
      <y>440</y>
      <width>311</width>
-     <height>25</height>
+     <height>29</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="_2">

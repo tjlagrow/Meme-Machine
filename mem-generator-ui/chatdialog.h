@@ -61,8 +61,9 @@ private slots:
     void newParticipant(const QString &nick);
     void participantLeft(const QString &nick);
     void showInformation();
-    bool openMeme(const QString &fileName);
+    bool openMeme(const QString &fileName,bool fromFile);
     void open();
+    bool sendMeme();
     void memeReturnedPressed();
 
     void on_pushButton_4_clicked();
