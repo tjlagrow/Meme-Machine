@@ -1,0 +1,18 @@
+Final Report for char broiled;
+
+This was a really challenging project.  We kept saying as a group that this is four seperate projects wrapped up in one.  We were actually very fearful about getting everything communicating with each other before the presentation.  However, everyone came together and we pulled it off.  We are all proud of our work.  Here is a summary of everyone's contributions.
+
+Jacob Bieker: Jacob developed the front end of the project.  He built the gui on Qt and was ready to impliment buttons and word boxes well in advance.  Jacob helped build the Qlabels and got helped get the wrappers implimented.
+
+Theodore LaGrow: Theodore was the project leader.  In addition to making sure the meetings stayed on track and setting an agenda, Theodore built a functional chat client server.  However, when it was discoved that Qt had a built in chat client server that would be more modular with Jacob's gui, it was decided to scrap the code developed and mold Qt's code.  Theodore helped make sure the pictures were able to be transfered over the server and displayed on the gui.
+
+Ian Garrett: Ian's responsibility was to get string printed on a jpeg and png file (the meme).  Ian ended up using the gd library to impliment his functions.  Ian was able to incorporate his code in Jacob's gui with Matthew's help and ended up being able to work with png and jpeg.  The libgd-dev was configured slightly out of since with the Qt library so the font functionality was slightly off however the styling Ian was able to produce was wonderful.
+
+Matthew Jagielski: Matthew was the back bone to the group.  Matthew's responsiblity was to make the picture's pixels scrabled with an encryption.  Matthew algorithem consisted of random shifts of both horizontal and vertical shifts.  He decided to keep his iteration at around 50 to make the image "just scrabled enough." !000 iterations was cool because of a completely noisy pixelized image but you wouldn't be able to differentiate 2 encrypted pictures.  Matthew also helped Ian and Theodore to hook up the buttons and itegrate the code.
+
+Risk Management: We could have developed our envirnments eariler to run everyone else's code.  This hurt us when Jacob could not be at the last meeting and we needed to integrate everything to the gui.  For future development, we could easily add sepa and greyscale filters for the pictures.  We could also have an option of how many itersation of encrytion a user would like (a little trickier for decrypt but thought it would be fun).
+
+We are proud of our 4-in-1 project and hope you enjoyed it too.
+
+Sincerely,
+Theodore, Ian, Jacob, Matthew

@@ -57,4 +57,72 @@ The client needs to be more modular
 The picture manipulation can’t use magik++
 ->trying to use gd or cing.
 
+The picture manipulation can’t use magik++
+->trying to use gd or cing.
+
 Try to get the drag and drop to display a picture on the gui (found an example)
+http://doc.qt.io/qt-5/qtnetwork-network-chat-example.html
+
+————
+
+(Meet 3/3/2016 matt, ian, jacob, tj)
+
+Agenda:  
++Schedule actual presentation time
++Schedule group meeting over the weekend
++Check Matthew’s new code with the encrypted picture
+	Matthew is also going to encrypt the videos
+	Working for small images 
++See how the chat is running and how to get the picture working with the chat
+	Need to see about how to hardcode in the name of the picture 
+	Need to well document (#Define sort of thing)
++Start integrating Jacob’s code
+	Don’t have working code for some shit
++Look at the meme creation portion of the pictures
+	Doesn’t work yet
+	Needs to debug
+	"6.8/10 for working” needs to put in the gui
++Take picture of group for meme work
+
+Plan for Monday:
+Decrypt and encrypt on the gui
+	Text and pictures
+Have the chat client working with displays of picture when uploaded
+	Jacob and TJ
+To have the actual meme creator work
+	Ian
+Start the presentation slides
+	TJ
+
+
+—
+
+(Meet 3/7/2016 matt, ian, jacob, tj)
+Agenda:
+Updates
+Ian - character are writing on images (sorta have function for it) 
+Jacob - Still working 
+Matthew - Helping Ian with getting a picture 
+		Incorporate new wrappers with the encryption code
+		Needs to change header files for the correct calls for Qt functionality
+TJ - Understands the Qt code and explains to group
+
+Matthew took control of the group
+make three calls to meme
+jpg, png
+will be getting a standard string in c++
+needs to make a text encryption 
+
+
+——
+
+(Meet 3/9/2016 matt, ian jacob, tj)
+Jacob, working on completing the Qt (3 classes not declared correctly) incorporation of the encryption wrapper class that matthew will write tonight.
+Ian, is modular, strings are printing on the pictures 
+
+——
+
+(Meet 3/10/2016 matt, ian, tj)
+Struggled to get the gui to compile on all our computers
+Finished up the project!
+
