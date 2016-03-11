@@ -42,8 +42,9 @@
 
 #include "chatdialog.h"
 #include "test.h"
-#include "encrypt.hpp"
+#include <random>
 
+QString memepath = "/home/meme/Documents/memesf/mem-generator-ui/inTestFilePath/meme.jpg";
 QString first_path = QDir::currentPath();
 QString final_path = QDir::currentPath();
 
@@ -54,8 +55,9 @@ ChatDialog::ChatDialog(QWidget *parent)
 // Meme generator setup
     lineEdit_2->setFocusPolicy(Qt::StrongFocus);
     connect(lineEdit_2, SIGNAL(returnPressed()), this, SLOT(memeReturnedPressed()));
-    memeGenLayout->setPixmap(QPixmap("meme.jpg"));
-
+    memeGenLayout->setPixmap(QPixmap(memepath));
+    std::default_random_engine rand (100);
+    this->qme =(new QEncryption(rand()));
 
     lineEdit->setFocusPolicy(Qt::StrongFocus);
     textEdit->setFocusPolicy(Qt::NoFocus);
@@ -143,7 +145,7 @@ bool ChatDialog::openMeme(const QString &fileName) {
         return false;
     } else {
         first_path = fileName;
-        final_path = fileName;
+        final_path = "new" + fileName;
         memeGenLayout->setPixmap(QPixmap::fromImage(image));
         return true;
     }
@@ -211,13 +213,12 @@ void ChatDialog::on_pushButton_4_clicked()
 
 void ChatDialog::on_pushButton_6_clicked()
 {
-    // Encrypt Button
-
+    (this->qme)->encryptimage(memepath,memepath);
 }
 
 void ChatDialog::on_pushButton_10_clicked()
 {
-    // Decrypt Button
+    (this->qme)->decryptimage(memepath,memepath);
 }
 
 void ChatDialog::on_pushButton_9_clicked()

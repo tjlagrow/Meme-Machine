@@ -43,6 +43,7 @@
 
 #include "ui_chatdialog.h"
 #include "client.h"
+#include "qencrypt.hpp"
 
 class ChatDialog : public QDialog, private Ui::ChatDialog
 {
@@ -69,6 +70,12 @@ private slots:
     void on_pushButton_6_clicked();
 
     void on_pushButton_10_clicked();
+    void on_pushButton_9_clicked();
+    void on_pushButton_8_clicked();
+    void on_pushButton_7_clicked();
+    void on_pushButton_5_clicked();
+    void on_pushButton_3_clicked();
+    void on_pushButton_2_clicked();
 
 private:
     Client client;
@@ -77,7 +84,7 @@ private:
     QPushButton *loadMemeButton;
     QPushButton *encryptButton;
     QPushButton *decryptButton;
-
+    QEncryption *qme;
 };
 
 #endif

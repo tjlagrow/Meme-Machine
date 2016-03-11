@@ -123,12 +123,3 @@ MessageEncryption::decrypt(std::string imgpath,std::string outpath){
 
 std::string
 MessageEncryption::decrypt(std::string str){return str;}
-
-int main(){
-    MessageEncryption me (10);
-    
-    me.encrypt("yarnshi.png","yonew.png");
-    
-    me.decrypt("yonew.png","yoold.png");
-
-}

@@ -58,7 +58,6 @@ void flipvert(gdImagePtr img){
 }
 
 int getexten(std::string path){
-    int result;
     std::string exten = path.substr(path.find_last_of(".")+1);
     
     std::transform(exten.begin(),exten.end(), exten.begin(), ::tolower);

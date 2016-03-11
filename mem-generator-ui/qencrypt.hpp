@@ -20,8 +20,8 @@ public slots:
     QString decrypttext(QString);
 
 private:
-    MessageEncryption me;
-}
+    MessageEncryption *me;
+};
 
 
 #endif

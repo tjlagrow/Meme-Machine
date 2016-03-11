@@ -15,19 +15,33 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     chatdialog.cpp \
-    client.cpp \
     connection.cpp \
     peermanager.cpp \
-    server.cpp
+    client.cpp \
+    server.cpp \
+    encrypt.cpp \
+    qencrypt.cpp \
+    imageops.cpp
 
 HEADERS  += mainwindow.h \
     chatdialog.h \
-    client.h \
     connection.h \
     peermanager.h \
-    server.h
+    client.h \
+    server.h \
+    encrypt.hpp \
+    qencrypt.hpp \
+    imageops.hpp
 
 FORMS    += mainwindow.ui \
     chatdialog.ui
 
 QT      += network widgets
+
+QMAKE_CXXFLAGS += -std=c++11
+
+unix: CONFIG += link_pkgconfig
+unix: PKGCONFIG += dri
+
+unix: CONFIG += link_pkgconfig
+unix: PKGCONFIG += gdlib
