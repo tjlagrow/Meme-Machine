@@ -8,13 +8,17 @@ class QmemeGeneration : public QWidget {
     Q_OBJECT
 
 public:
-    QgenerateMeme();
+    QmemeGeneration();
+    ~QmemeGeneration();
 
 
 public slots:
     void generateMemeQT(QString, QString, QString);
 
-}
+private:
+    Meme * me;
+
+};
 
 
 #endif

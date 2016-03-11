@@ -44,6 +44,7 @@
 #include "ui_chatdialog.h"
 #include "client.h"
 #include "qencrypt.hpp"
+#include "qtmemeGeneration.hpp"
 
 class ChatDialog : public QDialog, private Ui::ChatDialog
 {
@@ -86,6 +87,7 @@ private:
     QPushButton *encryptButton;
     QPushButton *decryptButton;
     QEncryption *qme;
+    QmemeGeneration *qmg;
 };
 
 #endif

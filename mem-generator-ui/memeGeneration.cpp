@@ -1,5 +1,4 @@
 #include "memeGeneration.hpp"
-// #include "imageops.hpp"
 
 #include "gd.h"
 #include "gdfontg.h"
@@ -10,19 +9,6 @@
 #include <iostream>
 
 using namespace std;
-
-int Meme::getexten(string path){
-    int result;
-    string exten = path.substr(path.find_last_of(".")+1);
-    
-    transform(exten.begin(),exten.end(), exten.begin(), ::tolower);
-
-    if(exten== "jpg"||exten=="jpeg"){
-        return 0;
-    } else if(exten=="png"){
-        return 1;
-    } else {return 2;}
-}
 
 string Meme::getFileName(const string& s){
     char sep = '/';
@@ -94,17 +80,4 @@ void Meme::generateMeme(string memeText, string inPath, string outPath){
     // gdImagePng(im, out);
     fclose(out);
     gdImageDestroy(im);
-}
-
-int main (int argc, char *argv[]){
-    Meme meme;
-
-    string memeText = "This is a dank meme";
-    // string inPath = "inTestFilePath/internetKid.png";
-    string inPath = "mypicture.png";
-    string outPath = "testFilePath/mypicture.png";
-    // string outPath = "internetKid.png";
-  meme.generateMeme(memeText, inPath, outPath);
-
-
 }

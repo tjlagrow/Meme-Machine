@@ -21,7 +21,9 @@ SOURCES += main.cpp\
     server.cpp \
     encrypt.cpp \
     qencrypt.cpp \
-    imageops.cpp
+    imageops.cpp \
+    memeGeneration.cpp \
+    qtmemeGeneration.cpp
 
 HEADERS  += mainwindow.h \
     chatdialog.h \
@@ -31,7 +33,9 @@ HEADERS  += mainwindow.h \
     server.h \
     encrypt.hpp \
     qencrypt.hpp \
-    imageops.hpp
+    imageops.hpp \
+    memeGeneration.hpp \
+    qtmemeGeneration.hpp
 
 FORMS    += mainwindow.ui \
     chatdialog.ui

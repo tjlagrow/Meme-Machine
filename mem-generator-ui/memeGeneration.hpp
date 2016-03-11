@@ -1,7 +1,7 @@
 #ifndef MEME_HPP_
 #define MEME_HPP_
 
-// #include "imageops.hpp"
+#include "imageops.hpp"
 #include "gd.h"
 #include "gdfontg.h"
 #include <cstring>
@@ -15,8 +15,7 @@ using namespace std;
 class Meme {
 public:
 
-	int getexten(string path);
-	string getFileName(const string& s);
+    string getFileName(const string& s);
 	void generateMeme(string memeText, string inPath, string outPath);
 
 };

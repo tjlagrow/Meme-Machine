@@ -41,7 +41,6 @@
 #include <QtWidgets>
 
 #include "chatdialog.h"
-#include "test.h"
 #include <random>
 
 QString memepath = "/home/meme/Documents/memesf/mem-generator-ui/inTestFilePath/";
@@ -59,6 +58,7 @@ ChatDialog::ChatDialog(QWidget *parent)
     memeGenLayout->setPixmap(QPixmap(memepath+memefile));
     std::default_random_engine rand (100);
     this->qme =new QEncryption(rand());
+    this->qmg =new QmemeGeneration();
 
     lineEdit->setFocusPolicy(Qt::StrongFocus);
     textEdit->setFocusPolicy(Qt::NoFocus);
@@ -127,7 +127,8 @@ void ChatDialog::memeReturnedPressed()
                          .arg(text.left(text.indexOf(' '))));
         textEdit->setTextColor(color);
     } else {
-        // Send to Meme Generator to put on picture
+        (this->qmg)->generateMemeQT(text,memepath+left_path,memepath+"m"+left_path);
+        openMeme(memepath+"m"+left_path,false);
         // PUT Meme TEXT Here
     }
 
