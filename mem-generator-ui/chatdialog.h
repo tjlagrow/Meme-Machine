@@ -66,6 +66,10 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_6_clicked();
+
+    void on_pushButton_10_clicked();
+
 private:
     Client client;
     QString myNickName;

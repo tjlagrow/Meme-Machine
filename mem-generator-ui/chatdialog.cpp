@@ -218,3 +218,33 @@ void ChatDialog::on_pushButton_10_clicked()
 {
     // Decrypt Button
 }
+
+void ChatDialog::on_pushButton_9_clicked()
+{
+    // Send Meme
+}
+
+void ChatDialog::on_pushButton_8_clicked()
+{
+    // Grayscale
+}
+
+void ChatDialog::on_pushButton_7_clicked()
+{
+    // Sepia
+}
+
+void ChatDialog::on_pushButton_5_clicked()
+{
+    //Face Swap
+}
+
+void ChatDialog::on_pushButton_3_clicked()
+{
+    // Filter
+}
+
+void ChatDialog::on_pushButton_2_clicked()
+{
+    // Memefiy (Do all of them)
+}
