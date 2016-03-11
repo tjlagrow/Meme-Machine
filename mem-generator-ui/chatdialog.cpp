@@ -44,13 +44,13 @@
 #include "test.h"
 #include "encrypt.hpp"
 
+QString first_path = QDir::currentPath();
+QString final_path = QDir::currentPath();
+
 ChatDialog::ChatDialog(QWidget *parent)
     : QDialog(parent)
 {
     setupUi(this);
-
-    QString first_path = QDir::currentPath();
-    QString final_path = QDir::currentPath();
 // Meme generator setup
     lineEdit_2->setFocusPolicy(Qt::StrongFocus);
     connect(lineEdit_2, SIGNAL(returnPressed()), this, SLOT(memeReturnedPressed()));
@@ -125,8 +125,7 @@ void ChatDialog::memeReturnedPressed()
         textEdit->setTextColor(color);
     } else {
         // Send to Meme Generator to put on picture
-        client.sendMessage(text);
-        appendMessage(myNickName, text);
+        // PUT Meme TEXT Here
     }
 
     lineEdit_2->clear();
@@ -143,6 +142,8 @@ bool ChatDialog::openMeme(const QString &fileName) {
         memeGenLayout->setPixmap(QPixmap());
         return false;
     } else {
+        first_path = fileName;
+        final_path = fileName;
         memeGenLayout->setPixmap(QPixmap::fromImage(image));
         return true;
     }
