@@ -44,13 +44,13 @@
 #include "test.h"
 #include "encrypt.hpp"
 
+QString first_path = QDir::currentPath();
+QString final_path = QDir::currentPath();
+
 ChatDialog::ChatDialog(QWidget *parent)
     : QDialog(parent)
 {
     setupUi(this);
-
-    QString first_path = QDir::currentPath();
-    QString final_path = QDir::currentPath();
 // Meme generator setup
     lineEdit_2->setFocusPolicy(Qt::StrongFocus);
     connect(lineEdit_2, SIGNAL(returnPressed()), this, SLOT(memeReturnedPressed()));
@@ -125,8 +125,7 @@ void ChatDialog::memeReturnedPressed()
         textEdit->setTextColor(color);
     } else {
         // Send to Meme Generator to put on picture
-        client.sendMessage(text);
-        appendMessage(myNickName, text);
+        // PUT Meme TEXT Here
     }
 
     lineEdit_2->clear();
@@ -143,6 +142,8 @@ bool ChatDialog::openMeme(const QString &fileName) {
         memeGenLayout->setPixmap(QPixmap());
         return false;
     } else {
+        first_path = fileName;
+        final_path = fileName;
         memeGenLayout->setPixmap(QPixmap::fromImage(image));
         return true;
     }
@@ -217,4 +218,34 @@ void ChatDialog::on_pushButton_6_clicked()
 void ChatDialog::on_pushButton_10_clicked()
 {
     // Decrypt Button
+}
+
+void ChatDialog::on_pushButton_9_clicked()
+{
+    // Send Meme
+}
+
+void ChatDialog::on_pushButton_8_clicked()
+{
+    // Grayscale
+}
+
+void ChatDialog::on_pushButton_7_clicked()
+{
+    // Sepia
+}
+
+void ChatDialog::on_pushButton_5_clicked()
+{
+    //Face Swap
+}
+
+void ChatDialog::on_pushButton_3_clicked()
+{
+    // Filter
+}
+
+void ChatDialog::on_pushButton_2_clicked()
+{
+    // Memefiy (Do all of them)
 }

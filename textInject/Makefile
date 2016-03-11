@@ -6,7 +6,7 @@ CXXFLAGS = -g -std=c++11 -lgd
 
 all: main 
 
-MAIN_OBJECTS = test.o
+MAIN_OBJECTS = memeGeneration.o
 main: $(MAIN_OBJECTS)
 	$(CXX) -o $@ $(MAIN_OBJECTS) -lgd
 
