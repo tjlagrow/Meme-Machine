@@ -1,13 +1,13 @@
 #include "qencrypt.hpp"
 #include <QtWidgets>
 
-QEncryption(){
+QEncryption::QEncryption(){
     this->me = MessageEncryption();
 }
-QEncryption(int key){
+QEncryption::QEncryption(int key){
     this->me = MessageEncryption(key);
 }
-~QEncryption();
+~QEncryption::QEncryption();
 
 void QEncryption::encryptimage(QString inpath, QString outpath){
     std::string newinpath = inpath.toStdString();
